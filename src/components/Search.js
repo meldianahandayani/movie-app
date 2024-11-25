@@ -1,13 +1,18 @@
+// src/components/Search.js
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { setSearchQuery } from '../slices/searchSlice';
 
-function Search({ searchQuery, setSearchQuery }) {
+function Search({ searchQuery }) {
+  const dispatch = useDispatch();
+
   return (
     <div style={styles.searchContainer}>
       <input
         type="text"
         placeholder="Search movies..."
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={(e) => dispatch(setSearchQuery(e.target.value))}
         style={styles.searchInput}
       />
     </div>
@@ -16,10 +21,10 @@ function Search({ searchQuery, setSearchQuery }) {
 
 const styles = {
   searchContainer: {
-    position: 'absolute', 
-    top: '20px', 
-    right: '20px', 
-    width: 'auto', 
+    position: 'absolute',
+    top: '20px',
+    right: '20px',
+    width: 'auto',
   },
   searchInput: {
     padding: '10px',
